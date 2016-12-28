@@ -1,0 +1,20 @@
+{
+  "name": "elm-blog-tutorial",
+  "version": "1.0.0",
+  "description": "Elm Blog Tutorial",
+  "main": "",
+  "scripts": {
+    "build": "elm-make src/Main.elm --output public/js/main.js --warn",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdenier/elm-blog-tutorial.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdenier/elm-blog-tutorial/issues"
+  },
+  "homepage": "https://github.com/sdenier/elm-blog-tutorial#readme"
+}
