@@ -2,6 +2,9 @@ module Main exposing (..)
 
 import Navigation
 import Html exposing (..)
+import Html.Attributes exposing (class, href)
+import Html.Events as Evt exposing (..)
+import Json.Decode as Json
 import UrlParser as Url exposing ((</>))
 
 
@@ -92,11 +95,21 @@ init location =
 
 type Msg
     = UrlChange Navigation.Location
+    | GoHome
+    | GoPosts
 
 
 update : Msg -> State -> ( State, Cmd Msg )
 update msg state =
-    ( state, Cmd.none )
+    case msg of
+        GoHome ->
+            ( state, Navigation.newUrl "/" )
+
+        GoPosts ->
+            ( state, Navigation.newUrl "/posts" )
+
+        UrlChange location ->
+            ( { state | route = (router location) }, Cmd.none )
 
 
 
@@ -105,6 +118,40 @@ update msg state =
 
 view : State -> Html Msg
 view state =
+    div [ class "text-wrap" ]
+        [ viewHeader
+        , viewBody state
+        ]
+
+
+viewHeader : Html Msg
+viewHeader =
+    header [ class "main-header" ]
+        [ goLink "/" GoHome "Home"
+        , goLink "/posts" GoPosts "Posts"
+        ]
+
+
+goLink : String -> Msg -> String -> Html Msg
+goLink url msg linkText =
+    let
+        linkOptions =
+            { stopPropagation = True, preventDefault = True }
+
+        linkHandler =
+            Evt.onWithOptions "click" linkOptions (Json.succeed msg)
+    in
+        a [ href url, linkHandler, class "nav-link" ]
+            [ text linkText ]
+
+
+viewBody : State -> Html Msg
+viewBody state =
+    div [ class "body-wrap" ] [ bodyContent state ]
+
+
+bodyContent : State -> Html Msg
+bodyContent state =
     case state.route of
         HomeRoute ->
             div [] [ text "Home" ]
