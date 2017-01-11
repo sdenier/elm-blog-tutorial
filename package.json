@@ -4,6 +4,7 @@
   "description": "Elm Blog Tutorial",
   "main": "",
   "scripts": {
+    "start": "cd public && python -m SimpleHTTPServer",
     "build": "elm-make src/Main.elm --output public/js/main.js --warn",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
