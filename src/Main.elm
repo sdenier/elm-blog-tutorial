@@ -2,13 +2,13 @@ module Main exposing (..)
 
 import Navigation
 import Html exposing (..)
-import Html.Attributes exposing (class, href)
-import Html.Events as Evt exposing (..)
-import Json.Decode as Json
+import Html.Attributes exposing (class)
 import Messages exposing (..)
 import Models exposing (..)
 import Routes exposing (..)
 import Update exposing (..)
+import View.Body as BodyView
+import View.Header as HeaderView
 
 
 -- MAIN
@@ -40,47 +40,6 @@ init location =
 view : State -> Html Msg
 view state =
     div [ class "text-wrap" ]
-        [ viewHeader
-        , viewBody state
+        [ HeaderView.view
+        , BodyView.view state
         ]
-
-
-viewHeader : Html Msg
-viewHeader =
-    header [ class "main-header" ]
-        [ goLink "/" ShowHome "Home"
-        ]
-
-
-goLink : String -> Msg -> String -> Html Msg
-goLink url msg linkText =
-    let
-        linkOptions =
-            { stopPropagation = True, preventDefault = True }
-
-        linkHandler =
-            Evt.onWithOptions "click" linkOptions (Json.succeed msg)
-    in
-        a [ href url, linkHandler, class "nav-link" ]
-            [ text linkText ]
-
-
-viewBody : State -> Html Msg
-viewBody state =
-    div [ class "body-wrap" ] [ bodyContent state ]
-
-
-bodyContent : State -> Html Msg
-bodyContent state =
-    case state.route of
-        HomeRoute ->
-            div [] [ text "Home" ]
-
-        PostRoute postId ->
-            div [] [ text ("Post #" ++ (toString postId)) ]
-
-        EditRoute postId ->
-            div [] [ text ("Edit Post #" ++ (toString postId)) ]
-
-        NotFound ->
-            div [] [ text "Not Found" ]
