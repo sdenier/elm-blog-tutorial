@@ -5,9 +5,9 @@ import Html exposing (..)
 import Html.Attributes exposing (class, href)
 import Html.Events as Evt exposing (..)
 import Json.Decode as Json
-import UrlParser as Url exposing ((</>))
 import Messages exposing (..)
 import Models exposing (..)
+import Routes exposing (..)
 
 
 -- MAIN
@@ -21,45 +21,6 @@ main =
         , update = update
         , subscriptions = (\_ -> Sub.none)
         }
-
-
-
--- ROUTES
-
-
-type Route
-    = HomeRoute
-    | PostRoute PostId
-    | EditRoute PostId
-    | NotFound
-
-
-postParser : Url.Parser (Int -> a) a
-postParser =
-    Url.s "posts" </> Url.int
-
-
-routePatterns : Url.Parser (Route -> c) c
-routePatterns =
-    Url.oneOf
-        [ Url.map HomeRoute Url.top
-        , Url.map PostRoute postParser
-        , Url.map EditRoute (postParser </> Url.s "edit")
-        ]
-
-
-router : Navigation.Location -> Route
-router location =
-    let
-        routeResult =
-            Url.parsePath routePatterns location
-    in
-        case routeResult of
-            Just route ->
-                route
-
-            Nothing ->
-                NotFound
 
 
 
