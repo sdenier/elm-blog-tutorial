@@ -8,6 +8,7 @@ import Json.Decode as Json
 import Messages exposing (..)
 import Models exposing (..)
 import Routes exposing (..)
+import Update exposing (..)
 
 
 -- MAIN
@@ -30,23 +31,6 @@ main =
 init : Navigation.Location -> ( State, Cmd Msg )
 init location =
     ( newState (router location), Cmd.none )
-
-
-
--- UPDATE
-
-
-update : Msg -> State -> ( State, Cmd Msg )
-update msg state =
-    case msg of
-        ShowHome ->
-            ( state, Navigation.newUrl "/" )
-
-        ShowPost postId ->
-            ( state, Navigation.newUrl <| "/posts/" ++ (toString postId) )
-
-        UrlChange location ->
-            ( { state | route = (router location) }, Cmd.none )
 
 
 
