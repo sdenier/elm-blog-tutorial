@@ -31,27 +31,20 @@ type alias PostId =
 
 type Route
     = HomeRoute
-    | PostsRoute
     | PostRoute PostId
     | EditRoute PostId
     | NotFound
 
 
-postsParser : Url.Parser a a
-postsParser =
-    Url.s "posts"
-
-
 postParser : Url.Parser (Int -> a) a
 postParser =
-    postsParser </> Url.int
+    Url.s "posts" </> Url.int
 
 
 routePatterns : Url.Parser (Route -> c) c
 routePatterns =
     Url.oneOf
         [ Url.map HomeRoute Url.top
-        , Url.map PostsRoute postsParser
         , Url.map PostRoute postParser
         , Url.map EditRoute (postParser </> Url.s "edit")
         ]
@@ -96,7 +89,6 @@ init location =
 type Msg
     = UrlChange Navigation.Location
     | GoHome
-    | GoPosts
 
 
 update : Msg -> State -> ( State, Cmd Msg )
@@ -105,8 +97,6 @@ update msg state =
         GoHome ->
             ( state, Navigation.newUrl "/" )
 
-        GoPosts ->
-            ( state, Navigation.newUrl "/posts" )
 
         UrlChange location ->
             ( { state | route = (router location) }, Cmd.none )
@@ -128,7 +118,6 @@ viewHeader : Html Msg
 viewHeader =
     header [ class "main-header" ]
         [ goLink "/" GoHome "Home"
-        , goLink "/posts" GoPosts "Posts"
         ]
 
 
@@ -155,9 +144,6 @@ bodyContent state =
     case state.route of
         HomeRoute ->
             div [] [ text "Home" ]
-
-        PostsRoute ->
-            div [] [ text "Posts" ]
 
         PostRoute postId ->
             div [] [ text ("Post #" ++ (toString postId)) ]
