@@ -5,6 +5,7 @@ import Html.Attributes exposing (class)
 import Messages exposing (..)
 import Models exposing (..)
 import Routes exposing (..)
+import View.Post.Show as ShowPost
 import View.NotFound as NotFound
 
 
@@ -20,7 +21,7 @@ bodyContent state =
             div [] [ text "Home" ]
 
         PostRoute postId ->
-            div [] [ text ("Post #" ++ (toString postId)) ]
+            ShowPost.view postId
 
         EditRoute postId ->
             div [] [ text ("Edit Post #" ++ (toString postId)) ]
