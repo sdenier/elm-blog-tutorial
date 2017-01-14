@@ -6,6 +6,7 @@ import Html.Attributes exposing (class, href)
 import Html.Events as Evt exposing (..)
 import Json.Decode as Json
 import UrlParser as Url exposing ((</>))
+import Messages exposing (..)
 
 
 -- MAIN
@@ -23,10 +24,6 @@ main =
 
 
 -- ROUTES
-
-
-type alias PostId =
-    Int
 
 
 type Route
@@ -86,17 +83,14 @@ init location =
 -- UPDATE
 
 
-type Msg
-    = UrlChange Navigation.Location
-    | GoHome
-
-
 update : Msg -> State -> ( State, Cmd Msg )
 update msg state =
     case msg of
-        GoHome ->
+        ShowHome ->
             ( state, Navigation.newUrl "/" )
 
+        ShowPost postId ->
+            ( state, Navigation.newUrl <| "/posts/" ++ (toString postId) )
 
         UrlChange location ->
             ( { state | route = (router location) }, Cmd.none )
@@ -117,7 +111,7 @@ view state =
 viewHeader : Html Msg
 viewHeader =
     header [ class "main-header" ]
-        [ goLink "/" GoHome "Home"
+        [ goLink "/" ShowHome "Home"
         ]
 
 
