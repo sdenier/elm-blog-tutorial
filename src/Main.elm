@@ -7,6 +7,7 @@ import Html.Events as Evt exposing (..)
 import Json.Decode as Json
 import UrlParser as Url exposing ((</>))
 import Messages exposing (..)
+import Models exposing (..)
 
 
 -- MAIN
@@ -65,18 +66,9 @@ router location =
 -- MODEL
 
 
-type alias State =
-    { route : Route }
-
-
-initialState : Route -> State
-initialState route =
-    { route = route }
-
-
 init : Navigation.Location -> ( State, Cmd Msg )
 init location =
-    ( initialState (router location), Cmd.none )
+    ( newState (router location), Cmd.none )
 
 
 
