@@ -1,0 +1,74 @@
+/*
+ * RESET
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+body {
+  background: #efefef;
+}
+
+/*
+ * CHROME
+ */
+
+.nav-link {
+  padding: 5px 10px;
+}
+
+.main-header {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  background: #fff;
+}
+
+.body-wrap {
+  padding: 20px;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*
+ * HOME PAGE
+ */
+
+/*
+ * DETAIL PAGE
+ */
+
+ /*
+  * EDIT POST PAGE
+  */
+
+.post-editor {
+  padding: 10px 20px;
+}
+
+.title-input-field,
+.body-input-field {
+  display: block;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.title-input-field {
+  margin-bottom: 10px;
+}
+
+.body-input-field {
+  height: 300px;
+}
