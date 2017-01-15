@@ -4,11 +4,18 @@ import Html exposing (..)
 import Html.Attributes exposing (class, href)
 import Html.Events as Evt exposing (..)
 import Json.Decode as Json
-import Messages exposing (Msg)
 
 
-goLink : String -> Msg -> String -> Html Msg
-goLink url msg linkText =
+type alias Url =
+    String
+
+
+type alias ClassName =
+    String
+
+
+goLink : ClassName -> Url -> msg -> List (Html msg) -> Html msg
+goLink className url msg children =
     let
         linkOptions =
             { stopPropagation = True, preventDefault = True }
@@ -16,5 +23,4 @@ goLink url msg linkText =
         linkHandler =
             Evt.onWithOptions "click" linkOptions (Json.succeed msg)
     in
-        a [ href url, linkHandler, class "nav-link" ]
-            [ text linkText ]
+        a [ href url, linkHandler, class className ] children

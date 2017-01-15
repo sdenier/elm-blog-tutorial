@@ -9,5 +9,10 @@ import Messages exposing (..)
 view : Html Msg
 view =
     header [ class "main-header" ]
-        [ goLink "/" ShowHome "Home"
+        [ navLink "/" ShowHome [ text "Home" ]
         ]
+
+
+navLink : Url -> Msg -> List (Html Msg) -> Html Msg
+navLink =
+    goLink "nav-link"
