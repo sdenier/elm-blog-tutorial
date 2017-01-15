@@ -5,6 +5,7 @@ import Html.Attributes exposing (class)
 import Messages exposing (..)
 import Models exposing (..)
 import Routes exposing (..)
+import View.Posts.List as PostsList
 import View.Post.Show as ShowPost
 import View.NotFound as NotFound
 
@@ -18,7 +19,7 @@ bodyContent : State -> Html Msg
 bodyContent state =
     case state.route of
         HomeRoute ->
-            div [] [ text "Home" ]
+            PostsList.view
 
         PostRoute postId ->
             ShowPost.view postId
