@@ -3,6 +3,7 @@ module View.Posts.List exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (class)
 import Messages exposing (..)
+import Routes exposing (Route(..))
 import Common.HtmlUtils exposing (goLink)
 
 
@@ -19,7 +20,7 @@ view =
 linkToPost : PostId -> String -> Html Msg
 linkToPost postId postTitle =
     goLink "post-link"
-        ("/posts/" ++ (toString postId))
+        (Routes.reverse (PostRoute postId))
         (ShowPost postId)
         [ h2 [ class "post-header" ]
             [ text postTitle ]

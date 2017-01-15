@@ -41,3 +41,13 @@ router location =
 
             Nothing ->
                 NotFound
+
+
+reverse : Route -> String
+reverse route =
+    case route of
+        PostRoute postId ->
+            "/posts/" ++ (toString postId)
+
+        _ ->
+            "/"
