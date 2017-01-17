@@ -10,3 +10,11 @@ type alias State =
 newState : Route -> State
 newState route =
     { route = route }
+
+
+type alias Post =
+    { id : Int
+    , author : String
+    , title : String
+    , body : String
+    }

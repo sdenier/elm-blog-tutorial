@@ -4,7 +4,7 @@
   "description": "Elm Blog Tutorial",
   "main": "",
   "scripts": {
-    "start": "cd public && python -m SimpleHTTPServer",
+    "start": "node server",
     "build": "elm-make src/Main.elm --output public/js/main.js --warn",
     "test": "elm test"
   },
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/sdenier/elm-blog-tutorial/issues"
   },
-  "homepage": "https://github.com/sdenier/elm-blog-tutorial#readme"
+  "homepage": "https://github.com/sdenier/elm-blog-tutorial#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }

@@ -17,3 +17,17 @@ update msg state =
 
         UrlChange location ->
             ( { state | route = (Routes.router location) }, Cmd.none )
+
+        PostsRetrieved (Ok posts) ->
+            let
+                _ =
+                    Debug.log "posts" posts
+            in
+                ( state, Cmd.none )
+
+        PostsRetrieved (Err e) ->
+            let
+                _ =
+                    Debug.log "err" e
+            in
+                ( state, Cmd.none )
