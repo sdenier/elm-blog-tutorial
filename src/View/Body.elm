@@ -19,7 +19,7 @@ bodyContent : State -> Html Msg
 bodyContent state =
     case state.route of
         HomeRoute ->
-            PostsList.view
+            PostsList.view state.posts
 
         PostRoute postId ->
             ShowPost.view postId
