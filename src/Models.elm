@@ -1,6 +1,6 @@
 module Models exposing (..)
 
-import Routes exposing (Route)
+import Routes exposing (Route(..))
 
 
 type alias State =
@@ -10,9 +10,9 @@ type alias State =
     }
 
 
-newState : Route -> State
-newState route =
-    { route = route
+initialState : State
+initialState =
+    { route = HomeRoute
     , posts = Nothing
     , current = Nothing
     }

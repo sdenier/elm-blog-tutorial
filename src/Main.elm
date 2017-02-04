@@ -5,7 +5,6 @@ import Html exposing (..)
 import Html.Attributes exposing (class)
 import Messages exposing (..)
 import Models exposing (..)
-import Routes exposing (..)
 import Update exposing (..)
 import View.Body as BodyView
 import View.Header as HeaderView
@@ -30,14 +29,7 @@ main =
 
 init : Navigation.Location -> ( State, Cmd Msg )
 init location =
-    let
-        initialRoute =
-            router location
-
-        initialRequest =
-            dispatchRequest initialRoute
-    in
-        ( newState initialRoute, initialRequest )
+    update (UrlChange location) initialState
 
 
 
