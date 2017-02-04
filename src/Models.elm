@@ -6,6 +6,7 @@ import Routes exposing (Route)
 type alias State =
     { route : Route
     , posts : Maybe (List Post)
+    , current : Maybe Post
     }
 
 
@@ -13,6 +14,7 @@ newState : Route -> State
 newState route =
     { route = route
     , posts = Nothing
+    , current = Nothing
     }
 
 

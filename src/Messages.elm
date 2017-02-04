@@ -13,4 +13,5 @@ type Msg
     = ShowHome
     | ShowPost PostId
     | UrlChange Navigation.Location
+    | PostRetrieved (Result Http.Error Post)
     | PostsRetrieved (Result Http.Error (List Post))

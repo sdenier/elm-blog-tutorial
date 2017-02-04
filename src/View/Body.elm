@@ -21,8 +21,8 @@ bodyContent state =
         HomeRoute ->
             PostsList.view state.posts
 
-        PostRoute postId ->
-            ShowPost.view postId
+        PostRoute _ ->
+            ShowPost.view state.current
 
         EditRoute postId ->
             div [] [ text ("Edit Post #" ++ (toString postId)) ]

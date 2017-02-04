@@ -37,6 +37,20 @@ update msg state =
             in
                 ( state, Cmd.none )
 
+        PostRetrieved (Ok post) ->
+            let
+                _ =
+                    Debug.log "post" post
+            in
+                ( { state | current = Just post }, Cmd.none )
+
+        PostRetrieved (Err e) ->
+            let
+                _ =
+                    Debug.log "err" e
+            in
+                ( state, Cmd.none )
+
 
 dispatchRequest : Route -> Cmd Msg
 dispatchRequest route =
@@ -45,7 +59,7 @@ dispatchRequest route =
             Requests.retrievePosts
 
         PostRoute postId ->
-            Cmd.none
+            Requests.retrievePost postId
 
         _ ->
             Cmd.none
