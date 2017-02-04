@@ -3,6 +3,7 @@ module Update exposing (..)
 import Navigation
 import Messages exposing (..)
 import Models exposing (..)
+import Requests
 import Routes exposing (Route(..))
 
 
@@ -16,7 +17,11 @@ update msg state =
             ( state, Navigation.newUrl <| (Routes.reverse (PostRoute postId)) )
 
         UrlChange location ->
-            ( { state | route = (Routes.router location) }, Cmd.none )
+            let
+                newRoute =
+                    (Routes.router location)
+            in
+                ( { state | route = newRoute }, dispatchRequest newRoute )
 
         PostsRetrieved (Ok posts) ->
             let
@@ -31,3 +36,16 @@ update msg state =
                     Debug.log "err" e
             in
                 ( state, Cmd.none )
+
+
+dispatchRequest : Route -> Cmd Msg
+dispatchRequest route =
+    case route of
+        HomeRoute ->
+            Requests.retrievePosts
+
+        PostRoute postId ->
+            Cmd.none
+
+        _ ->
+            Cmd.none

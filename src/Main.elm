@@ -5,7 +5,6 @@ import Html exposing (..)
 import Html.Attributes exposing (class)
 import Messages exposing (..)
 import Models exposing (..)
-import Requests
 import Routes exposing (..)
 import Update exposing (..)
 import View.Body as BodyView
@@ -31,7 +30,14 @@ main =
 
 init : Navigation.Location -> ( State, Cmd Msg )
 init location =
-    ( newState (router location), Requests.retrievePosts )
+    let
+        initialRoute =
+            router location
+
+        initialRequest =
+            dispatchRequest initialRoute
+    in
+        ( newState initialRoute, initialRequest )
 
 
 
