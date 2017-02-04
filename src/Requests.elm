@@ -4,7 +4,7 @@ import Http
 import Messages exposing (..)
 import Models exposing (..)
 import Json.Decode as Json
-import Routes exposing (Route(..))
+import Routes exposing (Route(..), PostId)
 
 
 retrievePosts : Cmd Msg
@@ -23,7 +23,7 @@ retrievePost postId =
 
 apiRoute : Route -> String
 apiRoute route =
-    "/api" ++ (Routes.reverse route)
+    "/api" ++ (Routes.pathFor route)
 
 
 decodePosts : Json.Decoder (List Post)

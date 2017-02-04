@@ -2,10 +2,10 @@ module View.Posts.List exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
-import Messages exposing (..)
+import Messages exposing (Msg)
 import Models exposing (..)
-import Routes exposing (Route(..))
-import Common.HtmlUtils exposing (goLink)
+import Routes exposing (Route(..), PostId)
+import View.RouteNavigation exposing (goRoute)
 
 
 view : Maybe (List Post) -> Html Msg
@@ -28,9 +28,8 @@ postNode post =
 
 linkToPost : PostId -> String -> Html Msg
 linkToPost postId postTitle =
-    goLink "post-link"
-        (Routes.reverse (PostRoute postId))
-        (ShowPost postId)
+    goRoute "post-link"
+        (PostRoute postId)
         [ h2 [ class "post-header" ]
             [ text postTitle ]
         ]

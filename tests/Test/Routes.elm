@@ -9,20 +9,20 @@ import Routes exposing (..)
 tests : Test
 tests =
     describe "Routing"
-        [ reverseTests
+        [ pathTests
         , routerTests
         ]
 
 
-reverseTests : Test
-reverseTests =
-    describe "#reverse"
+pathTests : Test
+pathTests =
+    describe "#pathFor"
         [ test "HomeRoute should translate to '/'" <|
-            \() -> Expect.equal "/" (reverse HomeRoute)
+            \() -> Expect.equal "/" (pathFor HomeRoute)
         , test "NotFound should translate to '/'" <|
-            \() -> Expect.equal "/" (reverse NotFound)
+            \() -> Expect.equal "/" (pathFor NotFound)
         , test "PostRoute should translate to '/posts/:postId'" <|
-            \() -> Expect.equal "/posts/89" (reverse (PostRoute 89))
+            \() -> Expect.equal "/posts/89" (pathFor (PostRoute 89))
         ]
 
 

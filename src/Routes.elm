@@ -1,5 +1,6 @@
 module Routes exposing (..)
 
+import Common.HtmlUtils
 import Navigation
 import UrlParser as Url exposing ((</>))
 
@@ -43,8 +44,8 @@ router location =
                 NotFound
 
 
-reverse : Route -> String
-reverse route =
+pathFor : Route -> Common.HtmlUtils.Url
+pathFor route =
     case route of
         PostRoute postId ->
             "/posts/" ++ (toString postId)

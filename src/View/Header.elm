@@ -1,19 +1,19 @@
 module View.Header exposing (..)
 
-import Common.HtmlUtils exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (class)
-import Messages exposing (..)
+import Messages exposing (Msg)
 import Routes exposing (Route(..))
+import View.RouteNavigation exposing (goRoute)
 
 
 view : Html Msg
 view =
     header [ class "main-header" ]
-        [ navLink (Routes.reverse HomeRoute) ShowHome [ text "Home" ]
+        [ navLink HomeRoute [ text "Home" ]
         ]
 
 
-navLink : Url -> Msg -> List (Html Msg) -> Html Msg
-navLink =
-    goLink "nav-link"
+navLink : Route -> List (Html Msg) -> Html Msg
+navLink route =
+    goRoute "nav-link" route

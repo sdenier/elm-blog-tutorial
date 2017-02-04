@@ -6,11 +6,11 @@ import Html.Events as Evt exposing (..)
 import Json.Decode as Json
 
 
-type alias Url =
+type alias ClassName =
     String
 
 
-type alias ClassName =
+type alias Url =
     String
 
 

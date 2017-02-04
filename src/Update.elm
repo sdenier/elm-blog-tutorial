@@ -10,11 +10,8 @@ import Routes exposing (Route(..))
 update : Msg -> State -> ( State, Cmd Msg )
 update msg state =
     case msg of
-        ShowHome ->
-            ( state, Navigation.newUrl (Routes.reverse HomeRoute) )
-
-        ShowPost postId ->
-            ( state, Navigation.newUrl <| (Routes.reverse (PostRoute postId)) )
+        Navigate url ->
+            ( state, Navigation.newUrl url )
 
         UrlChange location ->
             let
