@@ -21,6 +21,8 @@ pathTests =
             \() -> Expect.equal "/" (pathFor HomeRoute)
         , test "NotFound should translate to '/'" <|
             \() -> Expect.equal "/" (pathFor NotFound)
+        , test "NewPostRoute should translate to '/posts/new'" <|
+            \() -> Expect.equal "/posts/new" (pathFor NewPostRoute)
         , test "PostRoute should translate to '/posts/:postId'" <|
             \() -> Expect.equal "/posts/89" (pathFor (PostRoute 89))
         ]
@@ -31,6 +33,8 @@ routerTests =
     describe "#router"
         [ test "HomeRoute should match root path" <|
             \() -> Expect.equal HomeRoute (router rootLocation)
+        , test "NewPostRoute should match '/posts/new'" <|
+            \() -> Expect.equal NewPostRoute (router newPostLocation)
         , test "PostRoute should match /posts/:id" <|
             \() -> Expect.equal (PostRoute 89) (router postLocation)
         , test "PostRoute should not match another PostId" <|
@@ -43,6 +47,11 @@ routerTests =
 rootLocation : Navigation.Location
 rootLocation =
     { mockLocation | pathname = "/" }
+
+
+newPostLocation : Navigation.Location
+newPostLocation =
+    { mockLocation | pathname = "/posts/new" }
 
 
 postLocation : Navigation.Location

@@ -11,6 +11,7 @@ type alias PostId =
 
 type Route
     = HomeRoute
+    | NewPostRoute
     | PostRoute PostId
     | EditRoute PostId
     | NotFound
@@ -25,6 +26,7 @@ routePatterns : Url.Parser (Route -> c) c
 routePatterns =
     Url.oneOf
         [ Url.map HomeRoute Url.top
+        , Url.map NewPostRoute (Url.s "posts" </> Url.s "new")
         , Url.map PostRoute postParser
         , Url.map EditRoute (postParser </> Url.s "edit")
         ]
@@ -47,6 +49,9 @@ router location =
 pathFor : Route -> Common.HtmlUtils.Url
 pathFor route =
     case route of
+        NewPostRoute ->
+            "/posts/new"
+
         PostRoute postId ->
             "/posts/" ++ (toString postId)
 

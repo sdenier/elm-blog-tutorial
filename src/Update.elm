@@ -44,6 +44,26 @@ update msg state =
             in
                 ( state, Cmd.none )
 
+        UpdatePostTitle newTitle ->
+            let
+                newPost =
+                    updatePostTitle state.current newTitle
+
+                newState =
+                    { state | current = newPost }
+            in
+                newState ! [ Cmd.none ]
+
+        UpdatePostBody newBody ->
+            let
+                newPost =
+                    updatePostBody state.current newBody
+
+                newState =
+                    { state | current = newPost }
+            in
+                newState ! [ Cmd.none ]
+
 
 urlUpdate : Navigation.Location -> State -> ( State, Cmd Msg )
 urlUpdate location state =
@@ -58,8 +78,31 @@ urlUpdate location state =
             HomeRoute ->
                 ( newState, Requests.retrievePosts )
 
+            NewPostRoute ->
+                ( { newState | current = Just newPost }, Cmd.none )
+
             PostRoute postId ->
                 ( newState, Requests.retrievePost postId )
 
             _ ->
                 ( newState, Cmd.none )
+
+
+updatePostTitle : Maybe Post -> String -> Maybe Post
+updatePostTitle current newTitle =
+    case current of
+        Just post ->
+            Just { post | title = newTitle }
+
+        Nothing ->
+            Nothing
+
+
+updatePostBody : Maybe Post -> String -> Maybe Post
+updatePostBody current newBody =
+    case current of
+        Just post ->
+            Just { post | body = newBody }
+
+        Nothing ->
+            Nothing

@@ -11,6 +11,8 @@ view : Html Msg
 view =
     header [ class "main-header" ]
         [ navLink HomeRoute [ text "Home" ]
+        , text "|"
+        , navLink NewPostRoute [ text "Create" ]
         ]
 
 

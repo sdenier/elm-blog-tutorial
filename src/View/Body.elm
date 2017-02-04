@@ -6,6 +6,7 @@ import Messages exposing (..)
 import Models exposing (..)
 import Routes exposing (..)
 import View.Posts.List as PostsList
+import View.Post.Edit as EditPost
 import View.Post.Show as ShowPost
 import View.NotFound as NotFound
 
@@ -20,6 +21,9 @@ bodyContent state =
     case state.route of
         HomeRoute ->
             PostsList.view state.posts
+
+        NewPostRoute ->
+            EditPost.view state.current
 
         PostRoute _ ->
             ShowPost.view state.current
