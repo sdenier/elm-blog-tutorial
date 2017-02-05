@@ -24,3 +24,12 @@ type alias Post =
     , title : String
     , body : String
     }
+
+
+newPost : Post
+newPost =
+    { id = 0
+    , author = ""
+    , title = ""
+    , body = ""
+    }

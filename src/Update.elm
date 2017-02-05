@@ -14,11 +14,7 @@ update msg state =
             ( state, Navigation.newUrl url )
 
         UrlChange location ->
-            let
-                newRoute =
-                    (Routes.router location)
-            in
-                ( { state | route = newRoute }, dispatchRequest newRoute )
+            urlUpdate location state
 
         PostsRetrieved (Ok posts) ->
             let
@@ -49,14 +45,21 @@ update msg state =
                 ( state, Cmd.none )
 
 
-dispatchRequest : Route -> Cmd Msg
-dispatchRequest route =
-    case route of
-        HomeRoute ->
-            Requests.retrievePosts
+urlUpdate : Navigation.Location -> State -> ( State, Cmd Msg )
+urlUpdate location state =
+    let
+        newRoute =
+            (Routes.router location)
 
-        PostRoute postId ->
-            Requests.retrievePost postId
+        newState =
+            { state | route = newRoute }
+    in
+        case newRoute of
+            HomeRoute ->
+                ( newState, Requests.retrievePosts )
 
-        _ ->
-            Cmd.none
+            PostRoute postId ->
+                ( newState, Requests.retrievePost postId )
+
+            _ ->
+                ( newState, Cmd.none )
