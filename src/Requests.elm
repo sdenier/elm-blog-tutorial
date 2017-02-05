@@ -4,7 +4,7 @@ import Http
 import Messages exposing (..)
 import Models exposing (..)
 import Json.Decode as Json
-import Routes exposing (Route(..), PostId)
+import Routes
 
 
 retrievePosts : Cmd Msg

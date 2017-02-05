@@ -2,8 +2,8 @@ module View.Header exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
+import Models exposing (Route(..))
 import Messages exposing (Msg)
-import Routes exposing (Route(..))
 import View.RouteNavigation exposing (goRoute)
 
 

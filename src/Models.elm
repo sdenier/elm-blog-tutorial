@@ -1,7 +1,5 @@
 module Models exposing (..)
 
-import Routes exposing (Route(..))
-
 
 type alias State =
     { route : Route
@@ -18,8 +16,20 @@ initialState =
     }
 
 
+type alias PostId =
+    Int
+
+
+type Route
+    = HomeRoute
+    | NewPostRoute
+    | PostRoute PostId
+    | EditRoute PostId
+    | NotFound
+
+
 type alias Post =
-    { id : Int
+    { id : PostId
     , author : String
     , title : String
     , body : String

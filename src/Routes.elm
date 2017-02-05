@@ -1,20 +1,9 @@
 module Routes exposing (..)
 
 import Common.HtmlUtils
+import Models exposing (..)
 import Navigation
 import UrlParser as Url exposing ((</>))
-
-
-type alias PostId =
-    Int
-
-
-type Route
-    = HomeRoute
-    | NewPostRoute
-    | PostRoute PostId
-    | EditRoute PostId
-    | NotFound
 
 
 postParser : Url.Parser (Int -> a) a

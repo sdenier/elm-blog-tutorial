@@ -2,6 +2,7 @@ module Test.Routes exposing (..)
 
 import Test exposing (..)
 import Expect
+import Models exposing (Route(..))
 import Navigation
 import Routes exposing (..)
 

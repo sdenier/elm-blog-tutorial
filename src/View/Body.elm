@@ -4,7 +4,6 @@ import Html exposing (..)
 import Html.Attributes exposing (class)
 import Messages exposing (..)
 import Models exposing (..)
-import Routes exposing (..)
 import View.Posts.List as PostsList
 import View.Post.Edit as EditPost
 import View.Post.Show as ShowPost

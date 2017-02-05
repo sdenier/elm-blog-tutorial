@@ -2,8 +2,9 @@ module View.RouteNavigation exposing (..)
 
 import Common.HtmlUtils exposing (ClassName, goLink)
 import Html exposing (..)
+import Models exposing (Route)
 import Messages exposing (..)
-import Routes exposing (Route)
+import Routes
 
 
 goRoute : ClassName -> Route -> List (Html Msg) -> Html Msg

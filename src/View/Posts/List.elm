@@ -4,7 +4,6 @@ import Html exposing (..)
 import Html.Attributes exposing (class)
 import Messages exposing (Msg)
 import Models exposing (..)
-import Routes exposing (Route(..), PostId)
 import View.RouteNavigation exposing (goRoute)
 
 

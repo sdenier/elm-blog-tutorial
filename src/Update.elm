@@ -4,7 +4,7 @@ import Navigation
 import Messages exposing (..)
 import Models exposing (..)
 import Requests
-import Routes exposing (Route(..))
+import Routes
 
 
 update : Msg -> State -> ( State, Cmd Msg )
