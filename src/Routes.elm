@@ -6,18 +6,18 @@ import Navigation
 import UrlParser as Url exposing ((</>))
 
 
-postParser : Url.Parser (Int -> a) a
+postParser : Url.Parser a a
 postParser =
-    Url.s "posts" </> Url.int
+    Url.s "posts"
 
 
 routePatterns : Url.Parser (Route -> c) c
 routePatterns =
     Url.oneOf
         [ Url.map HomeRoute Url.top
-        , Url.map NewPostRoute (Url.s "posts" </> Url.s "new")
-        , Url.map EditDraftRoute (Url.s "posts" </> Url.s "draft")
-        , Url.map PostRoute postParser
+        , Url.map NewPostRoute (postParser </> Url.s "new")
+        , Url.map EditDraftRoute (postParser </> Url.s "draft")
+        , Url.map PostRoute (postParser </> Url.int)
         ]
 
 
