@@ -3,6 +3,7 @@ module Update exposing (..)
 import Navigation
 import Messages exposing (..)
 import Models exposing (..)
+import Ports
 import Requests
 import Routes
 
@@ -37,6 +38,13 @@ update msg state =
             in
                 ( { state | current = Just post }, Cmd.none )
 
+        PostReceived post ->
+            let
+                _ =
+                    Debug.log "post" post
+            in
+                ( { state | current = Just post }, Cmd.none )
+
         PostRetrieved (Err e) ->
             let
                 _ =
@@ -51,8 +59,11 @@ update msg state =
 
                 newState =
                     { state | current = newPost }
+
+                newCmd =
+                    Ports.saveDraft newPost
             in
-                newState ! [ Cmd.none ]
+                newState ! [ newCmd ]
 
         UpdatePostBody newBody ->
             let
@@ -61,8 +72,11 @@ update msg state =
 
                 newState =
                     { state | current = newPost }
+
+                newCmd =
+                    Ports.saveDraft newPost
             in
-                newState ! [ Cmd.none ]
+                newState ! [ newCmd ]
 
 
 urlUpdate : Navigation.Location -> State -> ( State, Cmd Msg )
@@ -80,6 +94,9 @@ urlUpdate location state =
 
             NewPostRoute ->
                 ( { newState | current = Just newPost }, Cmd.none )
+
+            EditDraftRoute ->
+                ( newState, Ports.getDraft () )
 
             PostRoute postId ->
                 ( newState, Requests.retrievePost postId )

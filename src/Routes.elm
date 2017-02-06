@@ -16,8 +16,8 @@ routePatterns =
     Url.oneOf
         [ Url.map HomeRoute Url.top
         , Url.map NewPostRoute (Url.s "posts" </> Url.s "new")
+        , Url.map EditDraftRoute (Url.s "posts" </> Url.s "draft")
         , Url.map PostRoute postParser
-        , Url.map EditRoute (postParser </> Url.s "edit")
         ]
 
 
@@ -40,6 +40,9 @@ pathFor route =
     case route of
         NewPostRoute ->
             "/posts/new"
+
+        EditDraftRoute ->
+            "/posts/draft"
 
         PostRoute postId ->
             "/posts/" ++ (toString postId)

@@ -23,8 +23,8 @@ type alias PostId =
 type Route
     = HomeRoute
     | NewPostRoute
+    | EditDraftRoute
     | PostRoute PostId
-    | EditRoute PostId
     | NotFound
 
 

@@ -5,12 +5,10 @@ import Html exposing (..)
 import Html.Attributes exposing (class)
 import Messages exposing (..)
 import Models exposing (..)
+import Ports
 import Update exposing (..)
 import View.Body as BodyView
 import View.Header as HeaderView
-
-
--- MAIN
 
 
 main : Program Never State Msg
@@ -19,21 +17,13 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = (\_ -> Sub.none)
+        , subscriptions = subscriptions
         }
-
-
-
--- MODEL
 
 
 init : Navigation.Location -> ( State, Cmd Msg )
 init location =
     update (UrlChange location) initialState
-
-
-
--- VIEW
 
 
 view : State -> Html Msg
@@ -42,3 +32,8 @@ view state =
         [ HeaderView.view
         , BodyView.view state
         ]
+
+
+subscriptions : State -> Sub Msg
+subscriptions state =
+    Ports.loadDraft PostReceived

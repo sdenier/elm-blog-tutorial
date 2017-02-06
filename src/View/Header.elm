@@ -13,6 +13,8 @@ view =
         [ navLink HomeRoute [ text "Home" ]
         , text "|"
         , navLink NewPostRoute [ text "Create" ]
+        , text "|"
+        , navLink EditDraftRoute [ text "Edit Draft" ]
         ]
 
 

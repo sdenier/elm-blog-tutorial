@@ -10,6 +10,18 @@
   <script src="/js/main.js"></script>
   <script>
     const app = Elm.Main.embed(document.getElementById('app'));
+    const STORAGE_KEY = 'draft';
+
+    app.ports.saveDraft.subscribe(post => {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(post));
+    });
+
+    app.ports.getDraft.subscribe(() => {
+      const rawPost = window.localStorage.getItem(STORAGE_KEY);
+      if (rawPost !== null) {
+        app.ports.loadDraft.send(JSON.parse(rawPost));
+      }
+    });
   </script>
 </body>
 </html>

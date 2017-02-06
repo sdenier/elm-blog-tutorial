@@ -24,11 +24,11 @@ bodyContent state =
         NewPostRoute ->
             EditPost.view state.current
 
+        EditDraftRoute ->
+            EditPost.view state.current
+
         PostRoute _ ->
             ShowPost.view state.current
-
-        EditRoute postId ->
-            div [] [ text ("Edit Post #" ++ (toString postId)) ]
 
         NotFound ->
             NotFound.view

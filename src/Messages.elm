@@ -9,6 +9,7 @@ import Navigation
 type Msg
     = Navigate Url
     | UrlChange Navigation.Location
+    | PostReceived Post
     | PostRetrieved (Result Http.Error Post)
     | PostsRetrieved (Result Http.Error (List Post))
     | UpdatePostTitle String
