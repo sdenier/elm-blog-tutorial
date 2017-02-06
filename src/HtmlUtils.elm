@@ -1,4 +1,4 @@
-module Common.HtmlUtils exposing (..)
+module HtmlUtils exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (class, href)

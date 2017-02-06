@@ -1,6 +1,6 @@
 module Messages exposing (..)
 
-import Common.HtmlUtils exposing (Url)
+import HtmlUtils exposing (Url)
 import Http
 import Models exposing (..)
 import Navigation

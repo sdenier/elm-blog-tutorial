@@ -1,6 +1,6 @@
 module Routes exposing (..)
 
-import Common.HtmlUtils
+import HtmlUtils
 import Models exposing (..)
 import Navigation
 import UrlParser as Url exposing ((</>))
@@ -35,7 +35,7 @@ router location =
                 NotFound
 
 
-pathFor : Route -> Common.HtmlUtils.Url
+pathFor : Route -> HtmlUtils.Url
 pathFor route =
     case route of
         NewPostRoute ->

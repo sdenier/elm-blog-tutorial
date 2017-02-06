@@ -1,6 +1,6 @@
 module View.RouteNavigation exposing (..)
 
-import Common.HtmlUtils exposing (ClassName, goLink)
+import HtmlUtils exposing (ClassName, goLink)
 import Html exposing (..)
 import Models exposing (Route)
 import Messages exposing (..)
@@ -13,6 +13,4 @@ goRoute className route =
         url =
             Routes.pathFor route
     in
-        goLink className
-            url
-            (Navigate url)
+        goLink className url (Navigate url)
