@@ -1,14 +1,11 @@
 module Main exposing (..)
 
 import Navigation
-import Html exposing (..)
-import Html.Attributes exposing (class)
 import Messages exposing (..)
 import Models exposing (..)
 import Ports
-import Update exposing (..)
-import View.Body as BodyView
-import View.Header as HeaderView
+import Update exposing (update)
+import View.MainView exposing (view)
 
 
 main : Program Never State Msg
@@ -24,14 +21,6 @@ main =
 init : Navigation.Location -> ( State, Cmd Msg )
 init location =
     update (UrlChange location) initialState
-
-
-view : State -> Html Msg
-view state =
-    div [ class "text-wrap" ]
-        [ HeaderView.view
-        , BodyView.view state
-        ]
 
 
 subscriptions : State -> Sub Msg

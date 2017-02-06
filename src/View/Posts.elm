@@ -1,4 +1,4 @@
-module View.Posts.List exposing (..)
+module View.Posts exposing (list)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
@@ -7,8 +7,8 @@ import Models exposing (..)
 import View.RouteNavigation exposing (goRoute)
 
 
-view : Maybe (List Post) -> Html Msg
-view maybePosts =
+list : Maybe (List Post) -> Html Msg
+list maybePosts =
     case maybePosts of
         Just posts ->
             ul [ class "post-list" ] (List.map postNode posts)

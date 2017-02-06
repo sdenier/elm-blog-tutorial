@@ -1,4 +1,4 @@
-module View.Post.Edit exposing (..)
+module View.Post exposing (show, edit)
 
 import Html exposing (..)
 import Html.Attributes exposing (class, placeholder, value)
@@ -7,8 +7,21 @@ import Messages exposing (..)
 import Models exposing (..)
 
 
-view : Maybe Post -> Html Msg
-view current =
+show : Maybe Post -> Html msg
+show current =
+    case current of
+        Just post ->
+            div []
+                [ h2 [] [ text post.title ]
+                , text post.body
+                ]
+
+        Nothing ->
+            div [] [ text "No post to show" ]
+
+
+edit : Maybe Post -> Html Msg
+edit current =
     div [ class "post-editor" ]
         [ input
             [ onInput UpdatePostTitle
