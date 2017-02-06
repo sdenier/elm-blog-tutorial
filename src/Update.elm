@@ -71,7 +71,12 @@ urlUpdate : Navigation.Location -> State -> ( State, Cmd Msg )
 urlUpdate location state =
     let
         newRoute =
-            (Routes.router location)
+            case (Routes.router location) of
+                Just route ->
+                    route
+
+                Nothing ->
+                    NotFound
 
         newState =
             { state | route = newRoute }

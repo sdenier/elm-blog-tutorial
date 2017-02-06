@@ -21,18 +21,9 @@ routePatterns =
         ]
 
 
-router : Navigation.Location -> Route
+router : Navigation.Location -> Maybe Route
 router location =
-    let
-        routeResult =
-            Url.parsePath routePatterns location
-    in
-        case routeResult of
-            Just route ->
-                route
-
-            Nothing ->
-                NotFound
+    Url.parsePath routePatterns location
 
 
 pathFor : Route -> HtmlUtils.Url

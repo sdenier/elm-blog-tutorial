@@ -33,15 +33,15 @@ routerTests : Test
 routerTests =
     describe "#router"
         [ test "HomeRoute should match root path" <|
-            \() -> Expect.equal HomeRoute (router rootLocation)
+            \() -> Expect.equal (Just HomeRoute) (router rootLocation)
         , test "NewPostRoute should match '/posts/new'" <|
-            \() -> Expect.equal NewPostRoute (router newPostLocation)
+            \() -> Expect.equal (Just NewPostRoute) (router newPostLocation)
         , test "PostRoute should match /posts/:id" <|
-            \() -> Expect.equal (PostRoute 89) (router postLocation)
+            \() -> Expect.equal (Just <| PostRoute 89) (router postLocation)
         , test "PostRoute should not match another PostId" <|
-            \() -> Expect.notEqual (PostRoute 123) (router postLocation)
+            \() -> Expect.notEqual (Just <| PostRoute 123) (router postLocation)
         , test "NotFound should match unknown path" <|
-            \() -> Expect.equal NotFound (router unknownLocation)
+            \() -> Expect.equal Nothing (router unknownLocation)
         ]
 
 
