@@ -18,11 +18,7 @@ update msg state =
             urlUpdate location state
 
         PostsRetrieved (Ok posts) ->
-            let
-                _ =
-                    Debug.log "posts" posts
-            in
-                ( { state | posts = Just posts }, Cmd.none )
+            ( { state | posts = Just posts }, Cmd.none )
 
         PostsRetrieved (Err e) ->
             let
@@ -31,19 +27,11 @@ update msg state =
             in
                 ( state, Cmd.none )
 
-        PostRetrieved (Ok post) ->
-            let
-                _ =
-                    Debug.log "post" post
-            in
-                ( { state | current = Just post }, Cmd.none )
-
         PostReceived post ->
-            let
-                _ =
-                    Debug.log "post" post
-            in
-                ( { state | current = Just post }, Cmd.none )
+            ( { state | current = Just post }, Cmd.none )
+
+        PostRetrieved (Ok post) ->
+            ( { state | current = Just post }, Cmd.none )
 
         PostRetrieved (Err e) ->
             let
